@@ -42,6 +42,11 @@ node 版本：18.19
 ui 框架：https://angular.io/api/core/Component#animations
 table：https://primeng.org/
 
+npm install -g @angular/cli
+ng new my-angular-app
+cd my-angular-app
+ng serve
+创建项目第一个配置选 N（不开启 Universal SSR 模式）
 启动：ng serve || ng serve --port 4300
 打包（开发环境的构建）：ng build
 打包（生产环境构建，进一步优化代码和缩小）：ng build --configuration=production
