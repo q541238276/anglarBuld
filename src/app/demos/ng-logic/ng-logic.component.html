@@ -1,0 +1,162 @@
+<div class="loopItem">
+  <div class="loopItemTitle">单层循环</div>
+  @for (item of achievementList; track item) {
+  <div class="achievementRow">
+    <div>姓名：{{item.name}}</div>
+    <div>性别：{{item.sex?"男":"女"}}</div>
+    <div>语文：{{item.chinese}}</div>
+    <div>数学：{{item.mathematics}}</div>
+    <div>英语：{{item.english}}</div>
+    <div>平均分：{{item.averageScore}}</div>
+  </div>
+  }
+  <!-- <div class="achievementRow" *ngFor="let item of achievementList;">
+    <div>姓名：{{item.name}}</div>
+    <div>性别：{{item.sex?"男":"女"}}</div>
+    <div>语文：{{item.chinese}}</div>
+    <div>数学：{{item.mathematics}}</div>
+    <div>英语：{{item.english}}</div>
+    <div>平均分：{{item.averageScore}}</div>
+  </div> -->
+</div>
+<div class="loopItem">
+  <div class="loopItemTitle">两层循环</div>
+  <div>
+    @for (item of deptTree; track item) {
+    @if (item.children){
+    <div class="deptTreeFatherRow">
+      <div>部门名称:{{item.name}}</div>
+      <div>部门id:{{item.id}}</div>
+      <div>子部门数据:
+        @for (child of item.children; track child) {
+        <div class="deptTreeChildRow">
+          <div>部门名称:{{child.name}}</div>
+          <div>部门id:{{child.id}}</div>
+          <div>部门人数:{{child.totalUser}}</div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+    }
+  </div>
+  <!-- <div class="deptTreeFatherRow" *ngFor="let item of deptTree;">
+    <div>部门名称:{{item.name}}</div>
+    <div>部门id:{{item.id}}</div>
+    <div>子部门数据:
+      <div class="deptTreeChildRow" *ngFor="let child of item.children;">
+        <div>部门名称:{{child.name}}</div>
+        <div>部门id:{{child.id}}</div>
+        <div>部门人数:{{child.totalUser}}</div>
+      </div>
+    </div>
+  </div> -->
+</div>
+<div class="loopItem">
+  <div class="loopItemTitle">多层循环递归（必须导出CommonModule）</div>
+  <div>
+    <ng-container *ngTemplateOutlet="itemTpl; context: { $implicit: deptTree }"></ng-container>
+    <ng-template #itemTpl let-deptTree>
+      @for (item of deptTree; track item) {
+      @if (!item.children) {
+      <div class="deptTreeChildRow">
+        <div>部门名称:{{item.name}}</div>
+        <div>部门id:{{item.id}}</div>
+        <div>部门人数:{{item.totalUser}}</div>
+      </div>
+      } @else {
+      <div class="deptTreeFatherRow">
+        <div>部门名称:{{item.name}}</div>
+        <div>部门id:{{item.id}}</div>
+        <div>子部门数据:
+          <ng-container *ngTemplateOutlet="itemTpl; context: { $implicit: item.children }" />
+        </div>
+      </div>
+      }
+      }
+    </ng-template>
+  </div>
+  <!--设置上下-->
+  <!-- <div>
+    <ng-container *ngTemplateOutlet="itemTpl; context: { $implicit: deptTree }"></ng-container>
+    <ng-template #itemTpl let-deptTree>
+      <div *ngFor="let item of deptTree">
+        <div *ngIf="!item.children" class="deptTreeChildRow">
+          <div>部门名称: {{item.name}}</div>
+          <div>部门id: {{item.id}}</div>
+          <div>部门人数: {{item.totalUser}}</div>
+        </div>
+        <div *ngIf="item.children" class="deptTreeFatherRow">
+          <div>部门名称: {{item.name}}</div>
+          <div>部门id: {{item.id}}</div>
+          <div>子部门数据:
+            <ng-container *ngTemplateOutlet="itemTpl; context: { $implicit: item.children }" />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div> -->
+</div>
+<div class="loopItem">
+  <div class="loopItemTitle">条件渲染1：</div>
+  <div>
+    <div *ngIf="viewType===1">
+      当viewType为1时显示
+    </div>
+    <div *ngIf="viewType===2">
+      当viewType为2时显示
+    </div>
+    <div *ngIf="viewType===3">
+      当viewType为3时显示
+    </div>
+    @if (viewType===1){
+    <div>
+      当viewType为1时显示
+    </div>
+    }
+    @if (viewType===2){
+    <div>
+      当viewType为2时显示
+    </div>
+    }
+    @if (viewType===3){
+    <div>
+      当viewType为3时显示
+    </div>
+    }
+    <button nz-button nzType="primary" (click)="changeViewType()">切换viewType；当前值为{{viewType}}</button>
+  </div>
+</div>
+<div class="loopItem">
+  <div class="loopItemTitle">条件渲染2：</div>
+  <div>
+    <div *ngIf="viewType===1; then thenBlock1; else elseBlock1"></div>
+    <ng-template #thenBlock1>
+      <!-- 条件1为真时显示的内容 -->
+      条件1为真时显示的内容
+    </ng-template>
+    <ng-template #elseBlock1>
+      <div *ngIf="viewType===2; then thenBlock2; else elseBlock2"></div>
+      <ng-template #thenBlock2>
+        <!-- 条件2为真时显示的内容 -->
+        条件2为真时显示的内容
+      </ng-template>
+      <ng-template #elseBlock2>
+        <!-- 条件1和条件2都为假时显示的内容 -->
+        条件1和条件2都为假时显示的内容
+      </ng-template>
+    </ng-template>
+    <button nz-button nzType="primary" (click)="changeViewType()">切换viewType；当前值为{{viewType}}</button>
+  </div>
+</div>
+<div class="loopItem">
+  <div class="loopItemTitle">条件渲染3：</div>
+  <div>
+    <div [ngSwitch]="viewType">
+      <div *ngSwitchCase="1">模板1</div>
+      <div *ngSwitchCase="2">模板2</div>
+      <div *ngSwitchDefault>默认模板</div>
+    </div>
+    <button nz-button nzType="primary" (click)="changeViewType()">切换viewType；当前值为{{viewType}}</button>
+  </div>
+</div>

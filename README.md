@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+生成组件：ng generate component component-name 或简写为 ng g c component-name
+生成服务：ng generate service service-name 或简写为 ng g s service-name
+生成模块：ng generate module module-name 或简写为 ng g m module-name
+生成指令：ng generate directive directive-name 或简写为 ng g d directive-name
+生成管道：ng generate pipe pipe-name 或简写为 ng g p pipe-name
+生成类：ng generate class class-name 或简写为 ng g cl class-name
+生成接口：ng generate interface interface-name 或简写为 ng g i interface-name
+创建新模块
+ng generate module my-module
+生成组件模块(创建文件)：
+ng generate component my-component
+生成服务模块：
+ng generate service my-service
+node 版本：18.19
+ui 框架：https://angular.io/api/core/Component#animations
+table：https://primeng.org/
+
+启动：ng serve || ng serve --port 4300
+打包（开发环境的构建）：ng build
+打包（生产环境构建，进一步优化代码和缩小）：ng build --configuration=production
+打包大小限制：angular.json==>budgets==>maximumError
+打包静态资源引入地址：index.html 里的<base href="/browser/">
+修改打包配置：anglar.js==>architect==>build==>options

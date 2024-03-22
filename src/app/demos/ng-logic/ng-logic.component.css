@@ -1,0 +1,27 @@
+.loopItem {
+  margin-bottom: 20px;
+}
+
+.loopItemTitle {
+  font-weight: 700;
+  color: red;
+}
+
+.achievementRow {
+  display: flex;
+  align-items: center;
+}
+
+.achievementRow div {
+  width: 100px;
+}
+
+.deptTreeChildRow,
+.deptTreeFatherRow {
+  display: flex;
+  align-items: center;
+}
+
+.deptTreeFatherRow {
+  align-items: flex-start;
+}

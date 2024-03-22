@@ -1,0 +1,37 @@
+<div class="userBox">
+  <div>姓名：{{userInfo.name}}</div>
+  <div>状态：{{userInfo.state?'启用':'禁用'}}</div>
+  <div>年龄：{{userInfo.age}}</div>
+  <div>性别：{{userInfo.sex?'男':'女'}}</div>
+  <div>头像：{{userInfo.headerImg}}</div>
+</div>
+<form nz-form>
+  <nz-form-item>
+    <nz-form-label nzFor="name">姓名</nz-form-label>
+    <nz-form-control>
+      <input nz-input name="name" [(ngModel)]="userInfo.name" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">状态</nz-form-label>
+    <nz-form-control>
+      <nz-switch name="state" [(ngModel)]="userInfo.state"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">年龄</nz-form-label>
+    <nz-form-control>
+      <nz-input-number name="age" [(ngModel)]="userInfo.age" [nzMin]="1" [nzMax]="200" [nzStep]="1"></nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">性别</nz-form-label>
+    <nz-form-control>
+      <nz-select nzShowSearch nzAllowClear name="sex" [nzOptions]="sexOptions" nzPlaceHolder="请选择性别"
+        [(ngModel)]="userInfo.sex">
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button nzType="primary" (click)="updateUser()">更新user(去primengTable页面看console
+    user的数据已经发生改变，可以理解为单独的vuex页面)</button>
+</form>

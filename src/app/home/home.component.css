@@ -1,0 +1,21 @@
+.appLayoutMax {
+  width: 100%;
+  height: 100%;
+}
+
+.appSider {
+  color: #fff;
+}
+
+.appSider /deep/ .ant-menu-inline.ant-menu-root .ant-menu-submenu-title>.ant-menu-title-content {
+  flex: none;
+}
+
+.appLogo {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

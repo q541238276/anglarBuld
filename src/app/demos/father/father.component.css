@@ -1,0 +1,10 @@
+.parentBox {
+  border: 1px solid #0a0ee7;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.childBox {
+  border: 1px solid #eb0b0b;
+  padding: 10px;
+}

@@ -1,0 +1,14 @@
+<form nz-form>
+  <nz-form-item *ngFor="let item of fields">
+    <nz-form-label nzFor="name">{{item.globalFieldName}}</nz-form-label>
+    <nz-form-control>
+      <input *ngIf="!item.customerFieldOptions" nz-input name="name" [(ngModel)]="fieldsValueMap[item.id]" />
+      <nz-select *ngIf="item.customerFieldOptions" nzShowSearch nzAllowClear name="sex"
+        [(ngModel)]="fieldsValueMap[item.id]">
+        <nz-option *ngFor="let option of item.customerFieldOptions" [nzLabel]="option.value"
+          [nzValue]="option.id"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button nzType="primary" (click)="getFieldMap()">获取数据</button>
+</form>

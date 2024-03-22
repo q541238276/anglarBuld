@@ -1,0 +1,19 @@
+<p>child1 works!</p>
+<p>父页面传递过来的parentMessage:{{parentMessage}}</p>
+<p>父页面传递过来的parentObj:</p>
+<p>姓名：{{parentObj.name}}</p>
+<p>性别：{{parentObj.sex?"男":"女"}}</p>
+<p>年龄：{{parentObj.age}}岁</p>
+<div>
+  <button nz-button nzType="primary" (click)="addUserAge()">添加张无忌的年龄（引用地址一样，会影响父页面数据）</button>
+</div>
+<p>父页面传递过来的clonedParentObj:</p>
+<p>姓名：{{clonedParentObj.name}}</p>
+<p>性别：{{clonedParentObj.sex?"男":"女"}}</p>
+<p>年龄：{{clonedParentObj.age}}岁</p>
+<div>
+  <button nz-button nzType="primary" (click)="addUserAge2()">添加张无忌的年龄（clone了parentObj，所以不会影响父页面数据）</button>
+</div>
+<div>
+  <button nz-button nzType="primary" (click)="emitClonedParentObj()">把clonedParentObj传递给父组件</button>
+</div>

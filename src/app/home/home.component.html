@@ -1,0 +1,41 @@
+<nz-layout class="appLayoutMax">
+  <nz-sider class="appSider" [nzCollapsed]="isCollapsed">
+    <div class="appLogo" (click)="toggleCollapsed()">
+      <span nz-icon [nzIconfont]="'icon-mima'"></span>
+      logo
+    </div>
+    <ul nz-menu nzMode="inline">
+      <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+      <ng-template #menuTpl let-menus>
+        @for (menu of menus; track menu) {
+        @if (!menu.children) {
+        <li nz-menu-item [nzPaddingLeft]="menu.level * 24" [nzDisabled]="menu.disabled" [nzSelected]="menu.selected"
+          (click)="jump(menu)">
+          @if (menu.icon) {
+          <span class="iconfont" [class]="menu.icon"></span>
+          }
+          <span>{{ menu.title }}</span>
+        </li>
+        } @else {
+        <li nz-submenu>
+          <span title>
+            <span class="iconfont" [class]="menu.icon"></span>
+            <span>{{menu.title}}</span>
+          </span>
+          <ul>
+            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }" />
+          </ul>
+        </li>
+        }
+        }
+      </ng-template>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <!-- <nz-header>Header</nz-header> -->
+    <app-header></app-header>
+    <nz-content class="appContent">
+      <router-outlet />
+    </nz-content>
+  </nz-layout>
+</nz-layout>
